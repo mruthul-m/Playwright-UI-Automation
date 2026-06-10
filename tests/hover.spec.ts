@@ -9,7 +9,7 @@ test('Hovering over elements and Confirming the User names', async({page}) => {
     for (const element of items) {
         await element.hover();  
         await expect(page.getByText(`name: user${i}`, {exact: true})).toBeVisible();   
-        await expect(page.locator(`[href="/users/${i}]`)).toBeVisible();
+        await expect(page.locator(`[href="/users/${i}"]`)).toBeVisible();
         i++;
     }
     
