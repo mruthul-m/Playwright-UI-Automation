@@ -24,32 +24,33 @@ test.describe('Login Feature in Sauce Demo app', () => {
         username: 'performance_glitch_user',
         password: 'secret_sauce'
     }
+    
+    let sauceDemoLogin: SauceDemoLoginPage;
+
+    test.beforeEach(async ({ page }) => {
+        sauceDemoLogin = new SauceDemoLoginPage(page);
+        await sauceDemoLogin.goto();
+    });
 
     test('Validu User Login', async({page}) => {
-        const SauceDemoLogin = new SauceDemoLoginPage(page);
-        await SauceDemoLogin.goto();
-        await SauceDemoLogin.fillUsername(validUser.username);
-        await SauceDemoLogin.fillPassword(validUser.password);
-        await SauceDemoLogin.login();
+        await sauceDemoLogin.fillUsername(validUser.username);
+        await sauceDemoLogin.fillPassword(validUser.password);
+        await sauceDemoLogin.login();
         await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
     })
 
-    test('Locked user Login', async({page}) => {
-        const SauceDemoLogin = new SauceDemoLoginPage(page);
-        await SauceDemoLogin.goto();
-        await SauceDemoLogin.fillUsername(LockedUser.username);
-        await SauceDemoLogin.fillPassword(LockedUser.password);
-        await SauceDemoLogin.login();
-        await SauceDemoLogin.expectError();
+    test('Locked user Login', async() => {
+        await sauceDemoLogin.fillUsername(LockedUser.username);
+        await sauceDemoLogin.fillPassword(LockedUser.password);
+        await sauceDemoLogin.login();
+        await sauceDemoLogin.expectError();
     })
 
     test('Glitch User Login', async({page}) => {
-        const SauceDemoLogin = new SauceDemoLoginPage(page);
-        await SauceDemoLogin.goto();
-        await SauceDemoLogin.fillUsername(GlitchUser.username);
-        await SauceDemoLogin.fillPassword(GlitchUser.password);
-        await SauceDemoLogin.login();
-        await expect(SauceDemoLogin.homePageHeading).toBeVisible();
+        await sauceDemoLogin.fillUsername(GlitchUser.username);
+        await sauceDemoLogin.fillPassword(GlitchUser.password);
+        await sauceDemoLogin.login();
+        await expect(sauceDemoLogin.homePageHeading).toBeVisible();
         await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
 
     })
