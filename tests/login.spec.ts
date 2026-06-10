@@ -7,7 +7,6 @@ interface User  {
 }
 
 
-
 test.describe('Login Feature in Sauce Demo app', () => {
     
     const validUser : User = {
