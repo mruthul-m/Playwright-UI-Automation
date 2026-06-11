@@ -13,6 +13,5 @@ test('frame handling and Date picker', async ({page}) => {
 
     const options: Intl.DateTimeFormatOptions = { month: '2-digit', day: '2-digit', year: 'numeric' };
     const formattedDate: string = new Date().toLocaleDateString('en-US', options);
-
     await expect(frame.locator("css=p > input")).toHaveValue(formattedDate);
 });
