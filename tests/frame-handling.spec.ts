@@ -8,7 +8,7 @@ test('frame handling and Date picker', async ({page}) => {
     await frame.locator("css=p > input").click();
 
     const dayOfMonth: number = new Date().getDate();
-    const todaysDay = frame.locator('css=.ui-datepicker-calendar tbody').getByText(`${dayOfMonth}`);
+    const todaysDay = frame.locator(`//table[contains(@class,'ui-datepicker-calendar')]//tbody//*[normalize-space()='${dayOfMonth}']/a`);
     await todaysDay.click();
 
     const options: Intl.DateTimeFormatOptions = { month: '2-digit', day: '2-digit', year: 'numeric' };
