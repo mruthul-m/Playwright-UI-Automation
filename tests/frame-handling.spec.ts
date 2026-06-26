@@ -1,4 +1,4 @@
-import test, { expect } from "@playwright/test";
+import {test, expect} from '../fixtures/baseTest'
 
 // handles dynamic date changes!
 test('frame handling and Date picker', async ({page}) => {

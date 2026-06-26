@@ -1,4 +1,4 @@
-import test, { expect } from "@playwright/test";
+import {test, expect} from '../fixtures/baseTest'
 
 
 test('Hovering over elements and Confirming the User names', async({page}) => {
@@ -14,3 +14,4 @@ test('Hovering over elements and Confirming the User names', async({page}) => {
     }
     
 })
+
